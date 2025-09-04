@@ -7,6 +7,7 @@ import { CashMovements } from './pages/CashMovements';
 import { MonthlyExpenses } from './pages/MonthlyExpenses';
 import { Inventory } from './pages/Inventory';
 import { UserManagement } from './pages/UserManagement';
+import { MonthlyProfits } from './pages/MonthlyProfits';
 
 function App() {
   const { user, loading } = useAuth();
@@ -36,6 +37,8 @@ function App() {
       return <Inventory />;
     case 'user-management':
       return <UserManagement />;
+    case 'monthly-profits':
+      return <MonthlyProfits />;
     default:
       return <Dashboard onPageChange={setCurrentPage} />;
   }
