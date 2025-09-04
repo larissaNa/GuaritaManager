@@ -3,6 +3,7 @@ import { Table } from '../components/ui/Table';
 import { Modal } from '../components/ui/Modal';
 import { useMonthlyExpenses } from '../hooks/useFirestore';
 import { MonthlyExpense, ExpenseCategory } from '../types';
+import { useAuth } from '../hooks/useAuth';
 
 export const MonthlyExpenses: React.FC = () => {
   // Helper function to get current date in YYYY-MM-DD format without timezone issues
@@ -14,6 +15,7 @@ export const MonthlyExpenses: React.FC = () => {
     return `${year}-${month}-${day}`;
   };
 
+  const { user } = useAuth();
   const { expenses, loading, addExpense, updateExpense, deleteExpense, getExpensesByMonth } = useMonthlyExpenses();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<MonthlyExpense | null>(null);

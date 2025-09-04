@@ -82,15 +82,15 @@ export const Login: React.FC<LoginProps> = ({ onToggleMode }) => {
             </button>
           </div>
 
-          <div className="text-center">
-            <button
-              type="button"
-              onClick={onToggleMode}
-              className="text-indigo-600 hover:text-indigo-500"
-            >
-              Não tem conta? Cadastre-se
-            </button>
-          </div>
+            {/* <div className="text-center">
+              <button
+                type="button"
+                onClick={onToggleMode}
+                className="text-indigo-600 hover:text-indigo-500"
+              >
+                Não tem conta? Cadastre-se
+              </button>
+            </div> */}
         </form>
       </div>
     </div>

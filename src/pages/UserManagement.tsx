@@ -4,35 +4,27 @@ import { UserManagementData, UserRole } from '../types';
 import { useAuth } from '../hooks/useAuth';
 
 export const UserManagement: React.FC = () => {
+  // All hooks must be called at the top level
   const { user } = useAuth();
   const [users, setUsers] = useState<UserManagementData[]>([]);
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showMigrationForm, setShowMigrationForm] = useState(false);
   const [currentUser, setCurrentUser] = useState<UserManagementData | null>(null);
-  
-  // Form state
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     displayName: '',
     role: 'funcionario' as UserRole
   });
-
-  // Migration form state
   const [migrationData, setMigrationData] = useState({
     uid: '',
     email: '',
     displayName: '',
     role: 'funcionario' as UserRole
   });
-
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-
-  useEffect(() => {
-    loadUsers();
-  }, []);
 
   const loadUsers = async () => {
     try {
@@ -46,6 +38,24 @@ export const UserManagement: React.FC = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (user?.role === 'gerente') {
+      loadUsers();
+    }
+  }, [user]);
+
+  // Check if user is manager after hooks
+  if (user?.role !== 'gerente') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-red-600 mb-4">Acesso Negado</h1>
+          <p className="text-gray-600">Esta página é restrita apenas para gerentes.</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

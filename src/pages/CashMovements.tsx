@@ -80,11 +80,17 @@ export const CashMovements: React.FC = () => {
   const getWeekRange = (weekString: string) => {
     if (!weekString) return null;
     const [year, week] = weekString.split('-W').map(Number);
-    const firstDayOfYear = new Date(year, 0, 1);
-    const daysToFirstMonday = (8 - firstDayOfYear.getDay()) % 7;
-    const firstMonday = new Date(year, 0, 1 + daysToFirstMonday);
-    const weekStart = new Date(firstMonday.getTime() + (week - 1) * 7 * 24 * 60 * 60 * 1000);
+    
+    // Calculate the start of the ISO week
+    // ISO weeks start on Monday and the first week contains January 4th
+    const jan4 = new Date(year, 0, 4);
+    const jan4Day = jan4.getDay() || 7; // Convert Sunday (0) to 7
+    const firstMondayOfYear = new Date(jan4.getTime() - (jan4Day - 1) * 24 * 60 * 60 * 1000);
+    
+    // Calculate the start of the selected week
+    const weekStart = new Date(firstMondayOfYear.getTime() + (week - 1) * 7 * 24 * 60 * 60 * 1000);
     const weekEnd = new Date(weekStart.getTime() + 6 * 24 * 60 * 60 * 1000);
+    
     return { start: weekStart, end: weekEnd };
   };
 

@@ -108,7 +108,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onPageChange }) => {
     <div className="space-y-6">
       {/* Summary Cards */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <Card
+        {/* <Card
           title="Vendas Total"
           value={formatCurrency(dashboardData.totalCash)}
           icon={<span className="text-2xl">💰</span>}
@@ -125,7 +125,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onPageChange }) => {
           showVisibilityToggle={true}
           isVisible={showCashValues}
           onToggleVisibility={() => setShowCashValues(!showCashValues)}
-        />
+        /> */}
         <Card
           title="Estoque Baixo"
           value={dashboardData.lowStockItems}
@@ -232,13 +232,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ onPageChange }) => {
             <div className="text-3xl mb-2">📦</div>
             <div className="text-sm font-medium text-gray-900">Atualizar Estoque</div>
           </div>
-          {/* <div
+          <div
             onClick={() => onPageChange('user-management')}
             className="text-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
           >
             <div className="text-3xl mb-2">👥</div>
             <div className="text-sm font-medium text-gray-900">Gerenciar Usuários</div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
