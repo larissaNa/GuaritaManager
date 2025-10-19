@@ -32,10 +32,10 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChang
     <div className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
-              <h1 className="text-xl font-bold text-gray-600">Financeiro Rancho</h1>
-            </div>
+          <div className="flex items-center">
+            <h1 className="text-xl font-bold text-gray-600">Controle RG</h1>
+
+            {/* Menu desktop */}
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               {menuItems.map((item) => (
                 <button
@@ -52,11 +52,26 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChang
                 </button>
               ))}
             </div>
+
+            {/* Casinha visível só no mobile */}
+            <div className="sm:hidden ml-4">
+              <button
+                onClick={() => onPageChange('dashboard')}
+                className={`${
+                  currentPage === 'dashboard'
+                    ? 'text-indigo-600'
+                    : 'text-gray-500 hover:text-gray-700'
+                } text-2xl`}
+              >
+                🏠
+              </button>
+            </div>
           </div>
+
           <div className="flex items-center">
-            {/* <span className="text-sm text-gray-700 mr-4">
+            <span className="text-sm text-gray-700 mr-4">
               Olá, {user?.displayName || user?.email}
-            </span> */}
+            </span>
             <button
               onClick={handleSignOut}
               className="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md text-sm font-medium"

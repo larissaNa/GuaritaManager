@@ -37,15 +37,14 @@ export type ExpenseCategory =
   | 'Bar'
   | 'Peixes'
   | 'Carnes'
-  | 'Frios/Congelados'
-  | 'Limpeza'
   | 'Descartáveis'
   | 'Material administrativo'
   | 'Boletos'
   | 'Serviços'
   | 'Impostos'
+  | 'Manutenção Pscina'
   | 'Funcionários';
-
+  
 export interface MonthlyExpense {
   id?: string;
   date: string;

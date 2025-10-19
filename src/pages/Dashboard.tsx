@@ -233,6 +233,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ onPageChange }) => {
             <div className="text-sm font-medium text-gray-900">Atualizar Estoque</div>
           </div>
           <div
+            onClick={() => onPageChange('monthly-profits')}
+            className="text-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+          >
+            <div className="text-3xl mb-2">📈</div>
+            <div className="text-sm font-medium text-gray-900">Relatório de Lucros</div>
+          </div>
+          <div
             onClick={() => onPageChange('user-management')}
             className="text-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
           >
