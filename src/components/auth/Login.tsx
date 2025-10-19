@@ -82,7 +82,7 @@ export const Login: React.FC<LoginProps> = ({ onToggleMode }) => {
             </button>
           </div>
 
-            {/* <div className="text-center">
+            <div className="text-center">
               <button
                 type="button"
                 onClick={onToggleMode}
@@ -90,7 +90,7 @@ export const Login: React.FC<LoginProps> = ({ onToggleMode }) => {
               >
                 Não tem conta? Cadastre-se
               </button>
-            </div> */}
+            </div>
         </form>
       </div>
     </div>
