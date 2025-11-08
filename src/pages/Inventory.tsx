@@ -220,29 +220,29 @@ const defaultProducts = {
   };
 
   const initializeDefaultProducts = async () => {
-    const existingProducts = inventory.map(item => item.name.toLowerCase());
-    
-    for (const [category, products] of Object.entries(defaultProducts)) {
-      for (const productName of products) {
-        if (!existingProducts.includes(productName.toLowerCase())) {
-          try {
-            await addInventoryItem({
-              category: category as ProductCategory,
-              name: productName,
-              initialQuantity: 0,
-              currentQuantity: 0,
-              entries: 0,
-              exits: 0,
-              minStockAlert: 5,
-              unit: category === 'peixes' || category === 'carnes' || category === 'hortifrut' ? 'kg' : 'unidade'
-            });
-          } catch (error) {
-            console.error(`Error adding ${productName}:`, error);
-          }
+  const existingProducts = new Set(inventory.map(item => item.name.toLowerCase()));
+
+  for (const [category, products] of Object.entries(defaultProducts)) {
+    for (const productName of products) {
+      if (!existingProducts.has(productName.toLowerCase())) {
+        try {
+          await addInventoryItem({
+            category: category as ProductCategory,
+            name: productName,
+            initialQuantity: 0,
+            currentQuantity: 0,
+            entries: 0,
+            exits: 0,
+            minStockAlert: 5,
+            unit: category === 'peixes' || category === 'carnes' || category === 'hortifrut' ? 'kg' : 'unidade'
+          });
+        } catch (error) {
+          console.error(`Erro ao adicionar ${productName}:`, error);
         }
       }
     }
-  };
+  }
+};
 
   useEffect(() => {
     if (inventory.length === 0 && !loading) {
